@@ -24,7 +24,7 @@ read -p "Write the user name: " USRNAME
 read -p "Write the user first password: " USRPASS
 
 # Create a new user
-useradd -c "${USRNAME}Â" -m "${USRLOGIN}"
+useradd -c "${USRNAME}Ã‚" -m "${USRLOGIN}"
 
 # Define a password for the new user
 echo "${USRPASS}" | passwd --stdin "${USRNAME}"
