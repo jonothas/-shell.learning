@@ -42,9 +42,9 @@ fi
 # Output to send to the new user
 HOST=$(hostname)
 echo ""
-echo "LOGIN : "${USRLOGIN}"
-echo "NAME  : "${USRNAME}"
-echo "PASSW : "${USRPASS}"
-echo "HOST  : "${HOST}"
+echo "LOGIN : "${USRLOGIN}""
+echo "NAME  : "${USRNAME}""
+echo "PASSW : "${USRPASS}""
+echo "HOST  : "${HOST}""
 
 exit 0
