@@ -1,4 +1,5 @@
 #! /usr/bin/env bash
+#JJ
 
 # This script generates a list of random passwords.
 echo ""
