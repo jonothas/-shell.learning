@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# Adds users to the same linux system
+
+# Check for root user
+
+if [[ "${UID}" -eq 0  ]]
+  then
+    echo "Starting script..."
+    echo " "
+  else
+    echo "The script need root privilegies"
+    echo "Exiting..."
+    exit 1
+fi
+
+# Ask for login
+read -p "Write the user login: " USRLOGIN
+
+# Ask for real name
+read -p "Write the user name: " USRNAME
+
+# Ask for password
+read -p "Write the user first password: " USRPASS
+
+# Create a new user
+useradd -c "${USRNAME}Â" -m "${USRLOGIN}"
+
+# Define a password for the new user
+echo "${USRPASS}" | passwd --stdin "${USRNAME}"
+
+# Expire a password for the first login
+passwd -e "${USRLOGIN}"
+
+# Test if the command succeded.
+if [[ "${?}" -ne 0 ]]
+  then
+    echo 'Your command did not execute succesfully.' 
+    exit 1
+fi
+
+# Output to send to the new user
+HOST=$(hostname)
+echo ""
+echo "LOGIN : "${USRLOGIN}"
+echo "NAME  : "${USRNAME}"
+echo "PASSW : "${USRPASS}"
+echo "HOST  : "${HOST}"
+
+exit 0
