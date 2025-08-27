@@ -1,0 +1,64 @@
+#! /usr/bin/env bash
+
+# This script generates a list of random passwords.
+echo ""
+echo '--------------------xxxxx----------'
+echo ""
+
+# A random number as a password.
+
+PASSWORD="${RANDOM}"
+	echo "${PASSWORD}"
+	echo "Random password"
+	echo ""
+
+# A random 3x  number as password
+
+PASSWORD="${RANDOM}${RANDOM}${RANDOM}"
+	echo "${PASSWORD}"
+	echo "Same but with 3 random"
+	echo ""
+
+# Date as password
+
+PASSWORD=$(date +%s)
+	echo "${PASSWORD}"
+	echo "Using the seconds since 1970"
+	echo ""
+
+# Date + Nanoseconds as password
+
+PASSWORD=$(date +%s%N)
+	echo "${PASSWORD}"
+	echo "Same but with nanoseconds in"
+	echo ""
+
+# Date + Nanoseconds convert with sha256sum
+
+PASSWORD=$(date +%s%N | sha256sum)
+	echo "${PASSWORD}"
+	echo "Same but converted to sha256sum"
+	echo ""
+
+# Same but the first 8 characters with head
+
+PASSWORD=$(date +%s%N | sha256sum | head -c16 )
+	echo "${PASSWORD}"
+	echo "Same before but just the head first 16 letters"
+	echo ""
+
+# Same but adding some random number and characters
+
+PASSWORD=$(date +%s%N${RANDOM}${RANDOM} | sha256sum | head -c32)
+	echo "${PASSWORD}"
+	echo "Same before but has some bonus"
+	echo "" 
+
+# Same but add some special characters
+
+SPECIAL='!@#$%^&*()_+-='
+	echo "$(echo "${SPECIAL}" | fold -w2 | shuf | head -c2)"${PASSWORD}""$(echo "${SPECIAL}" | fold -w2 | shuf | head -c2)""
+	echo "Same but now have 2 special characters in the begining and end"
+	echo ""
+echo '--------------------xxxxx----------'
+echo ""
